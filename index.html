@@ -31,11 +31,15 @@
   <script>
     backboneReady(() => {
       new AppView();
-      var models = window.exampleVideoData.map(function(video) {
-        return new Video(video);
-      });
-      var videos = new Videos(models);
-      new VideoListView({collection: videos});
+      
+      // $('.video-list-entry-title').click(function() {
+      //   //should interact with listentryview
+      //   var id = $(this)[0].classList[1];
+      //   // console.log('hi');
+      //   // console.log($(this)[0].classList[1]);
+      //   // videoPlayer.id = id;
+      //   //videoPlayer.render(id);
+      // });
     });
   </script>
 
