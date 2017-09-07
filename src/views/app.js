@@ -19,8 +19,11 @@ var AppView = Backbone.View.extend({
   
   setSelect: function(video) {
     var id = $(video.target)[0].classList[1];
-    console.log(id);
-    this.videoPlayer.render(id);
+    var title = $(video.target).text();
+    var description = $(video.target).siblings().text();
+    // console.log(title);
+    // console.log(id);
+    this.videoPlayer.render(id, title, description);
   },
 
 

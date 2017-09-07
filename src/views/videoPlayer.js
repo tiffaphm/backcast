@@ -8,9 +8,11 @@ var VideoPlayerView = Backbone.View.extend({
   
   //id: '4WJLlWpzpP0',
 
-  render: function(id) {
+  render: function(id, title, description) {
     this.$el.html(this.template());
     this.$('.embed-responsive-item').attr('src', 'https://www.youtube.com/embed/' + id);
+    this.$('.video-player-details h3').text(title);
+    this.$('.video-player-details div').text(description);
     return this;
   },
   
