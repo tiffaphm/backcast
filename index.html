@@ -11,13 +11,13 @@
   <script src="node_modules/backbone/backbone.js"></script>
 </head>
 <body>
-  <div id="app">
+  <div id="app"> <!-- container of everything -->
     <h5 style="border:none;">
       <br/><br/>this message will disappear when <em>app</em> view is correctly rendered<br/><br/><br/>
     </h5>
   </div>
 
-
+  <script src="src/data/exampleVideoData.js"></script>
   <script src="src/models/video.js"></script>
   <script src="src/collections/videos.js"></script>
   <script src="src/lib/templateUrl.js"></script>
@@ -31,6 +31,11 @@
   <script>
     backboneReady(() => {
       new AppView();
+      var models = window.exampleVideoData.map(function(video) {
+        return new Video(video);
+      });
+      var videos = new Videos(models);
+      var videoViews = new VideoListView({collection: videos});
     });
   </script>
 
