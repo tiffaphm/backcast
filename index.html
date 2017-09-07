@@ -35,7 +35,7 @@
         return new Video(video);
       });
       var videos = new Videos(models);
-      var videoViews = new VideoListView({collection: videos});
+      new VideoListView({collection: videos});
     });
   </script>
 
