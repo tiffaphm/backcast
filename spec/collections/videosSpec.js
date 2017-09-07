@@ -1,6 +1,6 @@
 describe ('VideosCollection', function() {
 
-  xdescribe('when retrieving live data from YouTube', function() {
+  describe('when retrieving live data from YouTube', function() {
     var collection;
 
     beforeEach(function() {
@@ -23,7 +23,7 @@ describe ('VideosCollection', function() {
 
     it('should initiate an ajax request when search is called with the specified data', function() {
       collection.search('something_to_search_for');
-      expect(Backbone.ajax).to.have.been.calledWithMatch({data: {q: 'something_to_search_for'}});
+      expect(Backbone.ajax).to.have.been.calledWithMatch({data: {query: 'something_to_search_for'}});
     });
 
     it('should convert the fetched data into an array', function() {

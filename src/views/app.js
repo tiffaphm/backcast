@@ -4,17 +4,48 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
-    var models = window.exampleVideoData.map(function(video) {
-      return new Video(video);
-    });
-    this.videos = new Videos(models);
-    new VideoListView({collection: this.videos});
+    // this.models = window.exampleVideoData.map(function(video) {
+    //   return new Video(video);
+    // });
+    this.videos = new Videos(this.models);
+    this.videoListView = new VideoListView({collection: this.videos});
     this.videoPlayer = new VideoPlayerView();
-    // console.log(this.videos); //refactor later
+    new SearchView();
+    this.on('searched', function(event) {
+      //console.log(this.videos);
+      console.log('hi');
+      this.videoListView = new VideoListView({collection: this.videos});
+    });
   },
   
+  models: window.exampleVideoData.map(function(video) {
+    return new Video(video);
+  }),
+  
   events: {
-    'click .video-list-entry-title': 'setSelect'
+    'click .video-list-entry-title': 'setSelect',
+    'click .search-bar .btn': 'getSearchString'
+  },
+  
+  reassignModels: function(data) {
+    this.models = data.items.map(function(object) {
+      return new Video(object);
+    });
+    this.videos = new Videos(this.models);
+    AppView.triggerEvent();
+  },
+  
+  triggerEvent: function() {
+    this.trigger('searched');
+  },
+  
+  getSearchString: function() {
+    var string = $('input').val();
+    this.videos.search(string, this.reassignModels);
+    //this.videos = new Videos(this.models);
+    //console.log(this.models);
+    // console.log(this.videos.search(string));
+    // maybe refactor to somehow use get//set
   },
   
   setSelect: function(video) {
