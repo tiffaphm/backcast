@@ -23,7 +23,7 @@ var AppView = Backbone.View.extend({
       });
       this.videos = new Videos(this.models);
       this.videoListView = new VideoListView({collection: this.videos});
-    }
+    };
     this.videos.search(string, reassignModels, this);
   },
 
