@@ -3,13 +3,11 @@ var VideoPlayerView = Backbone.View.extend({
   el: '.player',
   
   initialize: function() {
-    // this.render();
+    this.autoplay = 1;
   },
 
   render: function(obj) {
     this.$el.html(this.template(obj));
-    // console.log(obj.statistics);
-    // return this;
   },
   
   getVideo: function(id) {
@@ -21,8 +19,8 @@ var VideoPlayerView = Backbone.View.extend({
       contentType: 'application/json',
       success: function(data) {
         console.log('it works!');
-        console.log(data.items[0]);
-        
+        //console.log(data.items[0]);
+        data.items[0].autoplay = that.autoplay;
         that.render(data.items[0]);
       },
       error: function() {

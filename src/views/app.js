@@ -15,7 +15,8 @@ var AppView = Backbone.View.extend({
   events: {
     'click .video-list-entry-title': 'setSelect',
     'keyup .search-bar': 'getSearchString',
-    'click .search-bar .btn': 'getSearchString'
+    'click .search-bar .btn': 'getSearchString',
+    'click .toggle-autoplay': 'toggleAutoplay'
   },
 
   getSearchString: function(string) {
@@ -37,6 +38,9 @@ var AppView = Backbone.View.extend({
     this.videoPlayer.getVideo(id);
   },
 
+  toggleAutoplay: function(string) {
+    this.videoPlayer.autoplay = this.videoPlayer.autoplay === 0 ? 1 : 0;
+  },
 
   render: function() {
     this.$el.html(this.template());
