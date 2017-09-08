@@ -4,14 +4,17 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
     this.videos = new Videos();
+    this.lastSearch = Date.now() - 500;
     this.getSearchString();
     this.render();
     this.videoPlayer = new VideoPlayerView();
+    this.videoPlayer.getVideo('4WJLlWpzpP0');
     new SearchView();
   },
 
   events: {
     'click .video-list-entry-title': 'setSelect',
+    'keyup .search-bar': 'getSearchString',
     'click .search-bar .btn': 'getSearchString'
   },
 
@@ -31,7 +34,7 @@ var AppView = Backbone.View.extend({
     var id = $(video.target)[0].classList[1];
     var title = $(video.target).text();
     var description = $(video.target).siblings().text();
-    this.videoPlayer.render(id, title, description);
+    this.videoPlayer.getVideo(id);
   },
 
 
